@@ -27,6 +27,9 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
         // GET: Afiliado/Create
         public ActionResult Create()
         {
+            Conexion conexion = new Conexion();
+            var datos = conexion.ObtenerPlanes().ToList();
+            ViewBag.Planes = datos;
             return View();
         }
 
@@ -40,7 +43,6 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
                 if (ModelState.IsValid)
                 {
                     Conexion conexion = new Conexion();
-                    conexion.OpenConection();
                     var inserted = conexion.AfiliadosInsert(afiliado);
                     conexion.CloseConnection();
 

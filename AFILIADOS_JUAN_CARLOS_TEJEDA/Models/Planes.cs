@@ -11,7 +11,7 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
         public string Plan { get; set; }
         public Decimal MontoCobertura { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public int IdEstatus { get; set; }
+        public virtual Estatus Estatuses { get; set; }
         
     }
 }

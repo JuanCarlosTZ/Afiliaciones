@@ -177,13 +177,13 @@
     <Content Include="Views\Afiliado\Delete.cshtml" />
     <Content Include="Views\Afiliado\Edit.cshtml" />
     <Content Include="Views\Afiliado\Details.cshtml" />
-    <Content Include="Views\Afiliado\Create.cshtml" />
     <Content Include="Views\Afiliado\Index.cshtml" />
     <Content Include="Views\Planes\Details.cshtml" />
     <Content Include="Views\Planes\Index.cshtml" />
     <Content Include="Views\Planes\Create.cshtml" />
     <Content Include="Views\Planes\Edit.cshtml" />
     <Content Include="Views\Planes\Delete.cshtml" />
+    <Content Include="Views\Afiliado\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

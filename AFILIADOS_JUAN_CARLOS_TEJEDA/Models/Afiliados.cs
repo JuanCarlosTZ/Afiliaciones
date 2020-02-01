@@ -19,7 +19,7 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
         public string Nss { get; set; }
         public DateTime FechaRegistro { get; set; }
         public decimal MontoConsumido { get; set; }
-        public int IdEstatus { get; set; }
-        public int IdPlanes { get; set; }
+        public virtual Estatus Estatuses { get; set; }
+        public virtual Planes Planes { get; set; }
     }
 }
