@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.FechaRegistro)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdEstatus)
+            @Html.DisplayNameFor(model => model.Estatuses)
         </th>
         <th></th>
     </tr>
@@ -39,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.FechaRegistro)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdEstatus)
+            @Html.DisplayFor(modelItem => item.Estatuses.Estado)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

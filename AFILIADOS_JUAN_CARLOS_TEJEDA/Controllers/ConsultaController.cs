@@ -7,29 +7,29 @@ using System.Web.Mvc;
 
 namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
 {
-    public class PlanesController : Controller
+    public class ConsultaController : Controller
     {
-        // GET: Planes
-        public ActionResult Index() 
+        // GET: Consulta
+        public ActionResult Index()
         {
             Conexion conexion = new Conexion();
-            var datos = conexion.ObtenerPlanes().ToList();
+            var datos = conexion.ObtenerAfiliadosConsultas().ToList();
             return View(datos);
         }
 
-        // GET: Planes/Details/5
+        // GET: Consulta/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Planes/Create
+        // GET: Consulta/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Planes/Create
+        // POST: Consulta/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -45,13 +45,13 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
             }
         }
 
-        // GET: Planes/Edit/5
+        // GET: Consulta/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Planes/Edit/5
+        // POST: Consulta/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -67,13 +67,13 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
             }
         }
 
-        // GET: Planes/Delete/5
+        // GET: Consulta/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Planes/Delete/5
+        // POST: Consulta/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

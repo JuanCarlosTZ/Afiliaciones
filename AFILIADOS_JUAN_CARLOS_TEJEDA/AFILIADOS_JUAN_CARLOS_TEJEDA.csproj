@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AfiliadoController.cs" />
+    <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -134,6 +135,7 @@
     </Compile>
     <Compile Include="Models\Afiliados.cs" />
     <Compile Include="Models\Conexion.cs" />
+    <Compile Include="Models\Consulta.cs" />
     <Compile Include="Models\Estatus.cs" />
     <Compile Include="Models\Planes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +186,7 @@
     <Content Include="Views\Planes\Edit.cshtml" />
     <Content Include="Views\Planes\Delete.cshtml" />
     <Content Include="Views\Afiliado\Create.cshtml" />
+    <Content Include="Views\Consulta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

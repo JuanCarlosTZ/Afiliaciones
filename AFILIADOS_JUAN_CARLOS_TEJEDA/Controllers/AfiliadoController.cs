@@ -28,8 +28,11 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
         public ActionResult Create()
         {
             Conexion conexion = new Conexion();
-            var datos = conexion.ObtenerPlanes().ToList();
-            ViewBag.Planes = datos;
+            conexion.OpenConection();
+            var planes = conexion.ObtenerPlanes().ToList();
+            ViewBag.Planes = planes;
+            var estatus = conexion.ObtenerEstatus().ToList();
+            ViewBag.Estatus = estatus;
             return View();
         }
 
@@ -38,18 +41,18 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Controllers
         public ActionResult Create([Bind] Afiliados afiliado)
         {
             try
-            {
+            { 
+                Conexion conexion = new Conexion();
+                    var inserted = conexion.AfiliadosInsert(afiliado);
+
+                    if (inserted) return RedirectToAction("Index");
 
                 if (ModelState.IsValid)
                 {
-                    Conexion conexion = new Conexion();
-                    var inserted = conexion.AfiliadosInsert(afiliado);
-                    conexion.CloseConnection();
-
-                    if (inserted) return RedirectToAction("Index");
+                   
                 }
+                return View();
 
-                return RedirectToAction("Index");
             }
             catch(Exception ex)
             {

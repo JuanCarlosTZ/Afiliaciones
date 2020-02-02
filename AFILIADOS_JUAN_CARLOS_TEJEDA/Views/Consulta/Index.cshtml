@@ -1,17 +1,20 @@
-﻿@model IEnumerable<AFILIADOS_JUAN_CARLOS_TEJEDA.Models.Afiliados>
+﻿@model IEnumerable<AFILIADOS_JUAN_CARLOS_TEJEDA.Models.Consulta>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Consultas</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDUsuario)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombres)
         </th>
@@ -34,19 +37,28 @@
             @Html.DisplayNameFor(model => model.FechaRegistro)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoCobertura)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.MontoConsumido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estatuses.Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Planes.Plan)
+            @Html.DisplayNameFor(model => model.MontoRestante)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDUsuario)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombres)
         </td>
@@ -69,19 +81,25 @@
             @Html.DisplayFor(modelItem => item.FechaRegistro)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoCobertura)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.MontoConsumido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estatuses.Estado)
+            @Html.DisplayFor(modelItem => item.MontoRestante)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Planes.Plan)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>*@
     </tr>
 }
 

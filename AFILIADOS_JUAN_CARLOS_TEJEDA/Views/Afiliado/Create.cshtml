@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<AFILIADOS_JUAN_CARLOS_TEJEDA.Models.Planes> planes = ViewBag.Planes;
+    List<AFILIADOS_JUAN_CARLOS_TEJEDA.Models.Estatus> estatus = ViewBag.Estatus;
 }
 
 <h2>Create</h2>
@@ -84,13 +85,22 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Planes, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Planes,
-                 new SelectList(planes,"Id","Plan"),"Seleccionar Plan",new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.MontoConsumido, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.Planes.ID,
+                 new SelectList(planes, "ID", "Plan"), "Seleccionar Plan", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Planes, "", new { @class = "text-danger" })
         </div>
     </div>
 
-   
+    <div class="form-group">
+        @Html.LabelFor(model => model.Estatuses, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Estatuses.ID,
+                 new SelectList(estatus,"ID","Estado"), "Seleccionar Estatus", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Estatuses, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

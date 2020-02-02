@@ -41,7 +41,9 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
             cmd.Parameters.AddWithValue("@Monto_Consumido", afiliados.MontoConsumido);
             cmd.Parameters.AddWithValue("@Id_Estatus", afiliados.Estatuses.ID);
             cmd.Parameters.AddWithValue("@Id_Planes", afiliados.Planes.ID);
-            return cmd.ExecuteNonQuery() >= 1;
+            var result = cmd.ExecuteNonQuery();
+            CloseConnection();
+            return  result >= 1;
         }
         public bool AfiliadosUpdate(Afiliados afiliados)
         {
@@ -162,13 +164,13 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
             List<Planes> lstPlanes = new List<Planes>();
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
+            { con.Open();
                 SqlCommand cmd = new SqlCommand("PLANES_SELECT", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                con.Open();
+               
                 SqlDataReader rdr = cmd.ExecuteReader();
-
+               
                 while (rdr.Read())
                 {
                     Planes planes = new Planes();
@@ -183,7 +185,6 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
 
                 }
 
-                con.Close();
             }
             return lstPlanes;
         }
@@ -197,7 +198,7 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
             {
                 SqlCommand cmd = new SqlCommand("AFILIADOS_SELECT", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                OpenConection();
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -212,7 +213,7 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
                     afiliados.Sexo = Convert.ToString(rdr["Sexo"]);
                     afiliados.Cedula = Convert.ToString(rdr["Cedula"]);
                     afiliados.Nss = Convert.ToString(rdr["Nss"]);
-                    afiliados.FechaNacimiento = Convert.ToDateTime(rdr["Fecha_Registro"]);
+                    afiliados.FechaRegistro = Convert.ToDateTime(rdr["Fecha_Registro"]);
                     afiliados.MontoConsumido = Convert.ToDecimal(rdr["Monto_Consumido"]);
                     afiliados.Estatuses = ObtenerEstatus( Convert.ToInt32(rdr["Id_Estatus"]));
                     afiliados.Planes = ObtenerPlanes(Convert.ToInt32(rdr["Id_Planes"]));
@@ -225,6 +226,45 @@ namespace AFILIADOS_JUAN_CARLOS_TEJEDA.Models
                 con.Close();
             }
             return lstAfiliados;
+        }
+
+        public IEnumerable<Consulta> ObtenerAfiliadosConsultas()
+        {
+            List<Consulta> lstConsulta = new List<Consulta>();
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("AFILIADOS_CONSULTA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    Consulta consulta = new Consulta();
+
+                    consulta.IDUsuario = Convert.ToInt32(rdr["Id"]);
+                    consulta.Nombres = Convert.ToString(rdr["Nombres"]);
+                    consulta.Apellidos = Convert.ToString(rdr["Apellidos"]);
+                    consulta.FechaNacimiento = Convert.ToDateTime(rdr["Fecha_Nacimiento"]);
+                    consulta.Sexo = Convert.ToString(rdr["Sexo"]);
+                    consulta.Cedula = Convert.ToString(rdr["Cedula"]);
+                    consulta.Nss = Convert.ToString(rdr["Nss"]);
+                    consulta.FechaRegistro = Convert.ToDateTime(rdr["Fecha_Registro"]);
+                    consulta.MontoConsumido = Convert.ToDecimal(rdr["Monto_Consumido"]);
+                    consulta.Estatus = Convert.ToString(rdr["Estatus"]);
+                    consulta.Plan = Convert.ToString(rdr["Planes"]);
+                    consulta.MontoCobertura = Convert.ToDecimal(rdr["Monto_Cobertura"]);
+                    consulta.MontoRestante = Convert.ToDecimal(rdr["Monto_Restante"]);
+
+
+                    lstConsulta.Add(consulta);
+
+                }
+
+                con.Close();
+            }
+            return lstConsulta;
         }
     }
 }
